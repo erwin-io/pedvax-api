@@ -2,7 +2,7 @@
   "name": "pedvax-api",
   "description": "API REPO FOR PEDVAX SYSTEM (PEDIATRIC VACCINATION PROGRAM AND MAPPING INFORMATION SYSTEM)",
   "version": "1.0.0",
-  "main": "source/server.ts",
+  "main": "src/server.ts",
   "scripts": {
     "start": "nodemon src/server.ts"
   },

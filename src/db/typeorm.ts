@@ -1,11 +1,11 @@
 import "reflect-metadata";
 import { ConnectionOptions } from "typeorm";
-import { Vaccination } from "./entities/Vaccination";
-import { HealthCenter } from "./entities/HealthCenter";
-import { People } from "./entities/People";
-import { SystemConfig } from "./entities/SystemConfig";
-import { Users } from "./entities/Users";
-import { Vaccine } from "./entities/Vaccine";
+import { Vaccination } from "../db/entities/Vaccination";
+import { HealthCenter } from "../db/entities/HealthCenter";
+import { People } from "../db/entities/People";
+import { SystemConfig } from "../db/entities/SystemConfig";
+import { Users } from "../db/entities/Users";
+import { Vaccine } from "../db/entities/Vaccine";
 
 export function createConfig(): ConnectionOptions {
    const ssl = process.env.SSL;

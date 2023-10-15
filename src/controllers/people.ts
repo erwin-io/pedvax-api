@@ -19,6 +19,7 @@ peopleRouter.get("/", async (req: Request, res: Response, next: NextFunction) =>
     });
     return res.status(200).json({
       data: peoples,
+      success: true
     });
   } catch (ex) {
     return res.status(500).json({
@@ -41,6 +42,7 @@ peopleRouter.get("/:id", async (req: Request, res: Response, next: NextFunction)
     });
     return res.status(200).json({
       message: people,
+      success: true
     });
   } catch (ex) {
     return res.status(500).json({
@@ -87,6 +89,7 @@ peopleRouter.post("/", async (req: Request, res: Response, next: NextFunction) =
       );
       return res.status(200).json({
         data: people,
+        success: true
       });
     } else {
       return res.status(404).json({
@@ -154,6 +157,7 @@ peopleRouter.put("/:id", async (req: Request,res: Response,next: NextFunction,) 
         return res.status(200).json({
           message: "people updated successfully",
           data: people,
+          success: true
         });
       } else {
         return res.status(404).json({
@@ -193,6 +197,7 @@ peopleRouter.delete("/:id", async ( req: Request, res: Response, next: NextFunct
         return res.status(200).json({
           message: "people deleted successfully",
           data: people,
+          success: true
         });
       } else {
         return res.status(404).json({

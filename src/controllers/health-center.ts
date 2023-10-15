@@ -15,6 +15,7 @@ healthCenterRouter.get("/", async (req: Request, res: Response, next: NextFuncti
     });
     return res.status(200).json({
       data: healthCenters,
+      success: true
     });
   } catch (ex) {
     return res.status(500).json({
@@ -34,6 +35,7 @@ healthCenterRouter.get("/:id", async (req: Request, res: Response, next: NextFun
     });
     return res.status(200).json({
       message: healthCenter,
+      success: true
     });
   } catch (ex) {
     return res.status(500).json({
@@ -60,6 +62,7 @@ healthCenterRouter.post("/", async (req: Request, res: Response, next: NextFunct
       );
       return res.status(200).json({
         data: healthCenter,
+        success: true
       });
     } else {
       return res.status(404).json({
@@ -94,6 +97,7 @@ healthCenterRouter.put("/:id", async (req: Request,res: Response,next: NextFunct
         return res.status(200).json({
           message: "Health Center updated successfully",
           data: healthCenter,
+          success: true
         });
       } else {
         return res.status(404).json({
@@ -133,6 +137,7 @@ healthCenterRouter.delete("/:id", async ( req: Request, res: Response, next: Nex
         return res.status(200).json({
           message: "Health Center deleted successfully",
           data: healthCenter,
+          success: true
         });
       } else {
         return res.status(404).json({

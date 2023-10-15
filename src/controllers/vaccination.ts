@@ -22,6 +22,7 @@ vaccinationRouter.get("/", async (req: Request, res: Response, next: NextFunctio
     });
     return res.status(200).json({
       data: vaccinations,
+      success: true
     });
   } catch (ex) {
     return res.status(500).json({
@@ -46,6 +47,7 @@ vaccinationRouter.get("/:id", async (req: Request, res: Response, next: NextFunc
     });
     return res.status(200).json({
       message: vaccination,
+      success: true
     });
   } catch (ex) {
     return res.status(500).json({
@@ -114,6 +116,7 @@ vaccinationRouter.post("/", async (req: Request, res: Response, next: NextFuncti
       );
       return res.status(200).json({
         data: vaccination,
+        success: true
       });
     } else {
       return res.status(404).json({
@@ -205,6 +208,7 @@ vaccinationRouter.put("/:id", async (req: Request,res: Response,next: NextFuncti
         return res.status(200).json({
           message: "vaccination updated successfully",
           data: vaccination,
+          success: true
         });
       } else {
         return res.status(404).json({
@@ -249,6 +253,7 @@ vaccinationRouter.delete("/:id", async ( req: Request, res: Response, next: Next
         return res.status(200).json({
           message: "vaccination deleted successfully",
           data: vaccination,
+          success: true
         });
       } else {
         return res.status(404).json({

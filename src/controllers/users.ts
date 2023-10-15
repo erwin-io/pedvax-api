@@ -20,6 +20,7 @@ usersRouter.get("/", async (req: Request, res: Response, next: NextFunction) => 
         delete x.password;
         return x;
       }),
+      success: true
     });
   } catch (ex) {
     return res.status(500).json({
@@ -41,6 +42,7 @@ usersRouter.get("/:id", async (req: Request, res: Response, next: NextFunction) 
       delete user.password;
       return res.status(200).json({
         data: user,
+        success: true
       });
     } else {
       return res.status(404).json({
@@ -70,6 +72,7 @@ usersRouter.post("/login", async (req: Request, res: Response, next: NextFunctio
         delete user.password;
         return res.status(200).json({
           data: user,
+          success: true
         });
       } else {
         return res.status(404).json({
@@ -114,6 +117,7 @@ usersRouter.post("/", async (req: Request, res: Response, next: NextFunction) =>
       delete user.password;
       return res.status(200).json({
         data: user,
+        success: true
       });
     } else {
       return res.status(404).json({
@@ -152,6 +156,7 @@ usersRouter.put("/:id", async (req: Request,res: Response,next: NextFunction,) =
         return res.status(200).json({
           message: "user updated successfully",
           data: user,
+          success: true
         });
       } else {
         return res.status(404).json({
@@ -177,7 +182,7 @@ usersRouter.put("/:id/changePassword", async (req: Request,res: Response,next: N
         req.params.id && 
         req.body && 
         req.body.password) {
-      let { name, id } = { ...req.body as any, ...req.params as any } as any;
+      let { password, id } = { ...req.body as any, ...req.params as any } as any;
       let user: Users = await getRepository(Users).findOne({
         where: {
           userId: id,
@@ -185,7 +190,7 @@ usersRouter.put("/:id/changePassword", async (req: Request,res: Response,next: N
         },
       });
       if(user) {
-        user.name = name;
+        user.password = await AESEncrypt(password);
         user = await getManager().transaction(
           async (transactionalEntityManager) => {
             return await transactionalEntityManager.save(user);
@@ -195,6 +200,7 @@ usersRouter.put("/:id/changePassword", async (req: Request,res: Response,next: N
         return res.status(200).json({
           message: "user updated successfully",
           data: user,
+          success: true
         });
       } else {
         return res.status(404).json({
@@ -235,6 +241,7 @@ usersRouter.delete("/:id", async ( req: Request, res: Response, next: NextFuncti
         return res.status(200).json({
           message: "user deleted successfully",
           data: user,
+          success: true
         });
       } else {
         return res.status(404).json({
